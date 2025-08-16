@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ShopLite — Mini E-Commerce</title>
+  <meta name="description" content="A modern mini e-commerce demo app with filtering, sorting, search, and a persistent cart." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header / Nav -->
+    <header class="header">
+      <div class="brand">
+        <span class="logo">🛍️</span>
+        <h1>ShopLite</h1>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-wrap">
+          <input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products" />
+        </div>
+        <button id="cartBtn" class="btn icon-btn" aria-label="Open cart">🛒<span id="cartCount" class="badge">0</span></button>
+        <button id="themeToggle" class="btn icon-btn" aria-label="Toggle theme">🌙</button>
+        <button id="refreshBtn" class="btn ghost small" aria-label="Refresh products">↻</button>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Filters -->
+      <aside class="filters card glass" aria-label="Filters">
+        <div class="filters-head">
+          <h2>Filters</h2>
+          <button id="clearFilters" class="btn ghost small">Clear</button>
+        </div>
+
+        <div class="filter-block">
+          <label class="lbl">Category</label>
+          <div id="categoryList" class="chips"></div>
+        </div>
+
+        <div class="filter-block">
+          <label for="priceRange" class="lbl">Max Price: <span id="priceValue">$500</span></label>
+          <input id="priceRange" type="range" min="10" max="500" value="500" />
+        </div>
+
+        <div class="filter-block">
+          <label class="lbl">Sort by</label>
+          <div class="select-row">
+            <select id="sortSelect" aria-label="Sort products">
+              <option value="relevance">Relevance</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="rating-desc">Rating: High → Low</option>
+              <option value="alpha-asc">Name: A → Z</option>
+              <option value="alpha-desc">Name: Z → A</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products -->
+      <section class="products card glass">
+        <div class="products-head">
+          <h2>Products</h2>
+          <p id="resultMeta" class="muted">—</p>
+        </div>
+        <div id="grid" class="grid"></div>
+        <div id="loader" class="loader hidden">Loading products…</div>
+        <div id="empty" class="empty hidden">No products match your filters.</div>
+      </section>
+    </main>
+
+    <!-- Cart Drawer -->
+    <aside id="cartDrawer" class="drawer" aria-label="Shopping cart" aria-hidden="true">
+      <div class="drawer-panel glass">
+        <div class="drawer-head">
+          <h3>Your Cart</h3>
+          <button id="closeCart" class="btn icon-btn" aria-label="Close cart">✖️</button>
+        </div>
+
+        <div id="cartItems" class="cart-items"></div>
+
+        <div class="cart-summary">
+          <div class="row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">$0.00</strong>
+          </div>
+          <div class="row small muted">
+            <span>Taxes & shipping calculated at checkout</span>
+          </div>
+          <button id="checkoutBtn" class="btn primary full">Checkout</button>
+          <button id="clearCartBtn" class="btn ghost full">Clear Cart</button>
+        </div>
+      </div>
+      <div id="drawerBackdrop" class="drawer-backdrop" tabindex="-1"></div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+      <div>© <span id="year"></span> ShopLite • Built for ApexPlanet Internship — Task 4</div>
+      <div class="muted small">No accounts. Demo API. Client-side only.</div>
+    </footer>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
